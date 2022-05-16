@@ -1,0 +1,39 @@
+.cardContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+
+  .card {
+    margin-left: 1rem;
+    margin-right: 1rem;
+    box-shadow: 5px 5px 20px rgb(0 0 0 / 10%);
+    padding: 1rem;
+    width: 15%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &Img {
+      width: 10vw;
+    }
+
+    .title {
+      font-size: .5em;
+      margin-bottom: 1rem;
+    }
+
+    .description {
+      font-size: 1em;
+    }
+
+    &:hover {
+      background: rgb(235, 235, 235);
+      cursor: pointer;
+    }
+  }
+}
