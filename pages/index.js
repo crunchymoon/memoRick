@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 import styles from '../styles/Home.module.scss'
 const currentLink = 'https://rickandmortyapi.com/api/character/'
-import mypic from '../public/bgRickk.jpg'
 import Image from 'next/image'
 
 
+//useState : img --> bakcRickk, onClick data.image
 
 export async function getServerSideProps() {
   const res = await fetch(currentLink);
@@ -13,12 +13,9 @@ export async function getServerSideProps() {
 }
 
 export default function Home({ data }) {
-
-  console.log(mypic)
-
+  // const [img,setImg] = useState('');
   const [currentData, setCurrentData] = useState(data);
   const [currentChar, setcurrentChar] = useState(currentData.results)
-  console.log(currentChar);
   return (
     <div className={styles.mainContainer}>
       <ul className={styles.cardContainer}>
@@ -26,21 +23,13 @@ export default function Home({ data }) {
           currentChar.map((character) => {
             const { id, name, image } = character;
             return (
-              <li className={styles.card}>
-                <img className={styles.cardImg} src={image} alt={`${name}'s Thumb`}>
+              <li key={id} className={styles.card} >
+                <img className={styles.cardImg} onClick={((e)=>{e.target.src=image})} src={'/backRick.jpg'} alt={`${name}'s Thumb`}>
                 </img>
               </li>
             )
           })
         }
- {/* <Image
-      src={mypic}
-      alt="Picture of the author"
-      layout='fill'
-      objectFit='cover'
-      objectPosition='center'
-    /> */}
-
       </ul>
     </div>
   )
