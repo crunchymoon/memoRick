@@ -1,0 +1,35 @@
+[33mcommit 69c42cb7e984e2c71e65dfcbe89422fc7db0bee9[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Author: crunchymoon <sldenys96@hotmail.com>
+Date:   Sat May 21 10:31:04 2022 +0200
+
+    feat(index.js): added a function that randomly chooses a character ad updates the current character , next: fixing prop bugs..
+
+[33mcommit e01616714b48f39c2f05762869f88dd2a0f87521[m
+Author: crunchymoon <sldenys96@hotmail.com>
+Date:   Sat May 21 09:46:24 2022 +0200
+
+    feat(index.js): all characters can be fetched and displayed in allChar variable.
+
+[33mcommit 2fb1d1d9317a55a3e8d82aa72c270e2939a96f1a[m
+Author: crunchymoon <sldenys96@hotmail.com>
+Date:   Fri May 20 23:13:34 2022 +0200
+
+    feat(index.js):imgs are covered until they're clicked
+
+[33mcommit d72d9d83f13c20b8a8c4f9c37e3747dd6a42d5c1[m
+Author: crunchymoon <sldenys96@hotmail.com>
+Date:   Thu May 19 00:07:15 2022 +0200
+
+    feat(Home.module.scss, global.scss): bg img fixing
+
+[33mcommit 7d677c884307690d47e23f3c524ff0b7b48ef422[m
+Author: crunchymoon <sldenys96@hotmail.com>
+Date:   Mon May 16 09:16:09 2022 +0200
+
+    feat(index.js,Home.module.scss): fetched data from rickandmortyapi, aligned items
+
+[33mcommit 7b3caad746011c402a612fe2b787d44cd688be61[m[33m ([m[1;31morigin/master[m[33m)[m
+Author: crunchymoon <sldenys96@hotmail.com>
+Date:   Mon May 16 09:12:21 2022 +0200
+
+    feat(*): project ,img setup, applying scss

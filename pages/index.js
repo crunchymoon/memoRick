@@ -13,7 +13,6 @@ function getMultipleRandom(arr, num) {
 }
 
 
-
 export async function getServerSideProps() {
   const res = await fetch(currentLink);
   const data = await res.json();
@@ -25,6 +24,7 @@ export default function Home({ data }) {
   const [currentData, setCurrentData] = useState(data);
   const [currentChar, setCurrentChar] = useState(currentData.results)
   const [allChars, setAllchars] = useState([...currentChar]);
+  const [randomChars, setRandomChars] = useState([])
 
   useEffect(() => {
     if (currentData.info.next == null) {
@@ -35,29 +35,30 @@ export default function Home({ data }) {
         const res = await fetch(currentData.info.next);
         const data = await res.json();
         setCurrentData(data)
-
         const circurr = [...currentChar, ...data.results]
         setAllchars(circurr)
-        // setCurrentChar(allChars) 
-        
-
+        setCurrentChar(allChars)
       }
       getAllCharacters()
 
     }
   }, [currentData])
-  const random5 = getMultipleRandom(allChars, 5)
+
+  
+  useEffect(() => {
+    setRandomChars(getMultipleRandom(allChars, 20))
+  }, [allChars])
+
 
   return (
     <div className={styles.mainContainer}>
       <ul className={styles.cardContainer}>
         {
-          
-          random5.map((character) => {
-            // console.log(character)
+
+          randomChars.map((character) => {
             const { id, name, image } = character;
             return (
-              <li key={id} className={styles.card} onClick={(()=>{console.log(id)})}>
+              <li key={id} className={styles.card} onClick={(() => { console.log(id) })}>
                 {/* <img className={styles.cardImg} onClick={((e) => { e.target.src = image })} src={'/backRick.jpg'} alt={`${name}'s Thumb`}> */}
                 <img className={styles.cardImg} src={image} alt={`${name}'s Thumb`}>
                 </img>
