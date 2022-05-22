@@ -1,12 +1,8 @@
 import { useState, useEffect } from 'react';
 import styles from '../styles/Home.module.scss'
 const currentLink = 'https://rickandmortyapi.com/api/character/'
+import Skeleton from '../components/Skeleton';
 import Image from 'next/image'
-
-
-//useState : img --> bakcRickk, onClick data.image
-
-
 
 export async function getServerSideProps() {
   const res = await fetch(currentLink);
@@ -28,12 +24,12 @@ export default function Home({ data }) {
     return ar.length <= (size + 1) ? new_ar : getMultipleRandom(new_ar, size);
   }
 
-
-
-
   useEffect(() => {
     if (currentData.info.next == null) {
-      setUpdate(true);
+      setTimeout(()=>{
+        setUpdate(true);
+      },1800)
+      
 
     } else {
 
@@ -53,7 +49,6 @@ export default function Home({ data }) {
 
 
   useEffect(() => {
-    // setRandomChars(getMultipleRandom(allChars, 20))
     setRandomChars(getMultipleRandom(allChars, 20))
   }, [update])
 
@@ -75,7 +70,7 @@ export default function Home({ data }) {
             })
           )
         }
-        {!update && <p>loading..</p>}
+        {!update && <Skeleton type='loading'/>}
 
       </ul>
     </div>
