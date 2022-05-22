@@ -6,11 +6,6 @@ import Image from 'next/image'
 
 //useState : img --> bakcRickk, onClick data.image
 
-function getMultipleRandom(arr, num) {
-  const shuffled = [...arr].sort(() => 0.5 - Math.random());
-
-  return shuffled.slice(0, num);
-}
 
 
 export async function getServerSideProps() {
@@ -25,10 +20,21 @@ export default function Home({ data }) {
   const [currentChar, setCurrentChar] = useState(currentData.results)
   const [allChars, setAllchars] = useState([...currentChar]);
   const [randomChars, setRandomChars] = useState([])
+  const [update, setUpdate] = useState(false)
+
+  const getMultipleRandom = (ar, size) => {
+    let new_ar = [...ar];
+    new_ar.splice(Math.floor(Math.random() * ar.length), 1);
+    return ar.length <= (size + 1) ? new_ar : getMultipleRandom(new_ar, size);
+  }
+
+
+
 
   useEffect(() => {
     if (currentData.info.next == null) {
-      return
+      setUpdate(true);
+
     } else {
 
       async function getAllCharacters() {
@@ -38,34 +44,39 @@ export default function Home({ data }) {
         const circurr = [...currentChar, ...data.results]
         setAllchars(circurr)
         setCurrentChar(allChars)
+
       }
       getAllCharacters()
 
     }
   }, [currentData])
 
-  
+
   useEffect(() => {
+    // setRandomChars(getMultipleRandom(allChars, 20))
     setRandomChars(getMultipleRandom(allChars, 20))
-  }, [allChars])
+  }, [update])
 
 
   return (
     <div className={styles.mainContainer}>
       <ul className={styles.cardContainer}>
         {
-
-          randomChars.map((character) => {
-            const { id, name, image } = character;
-            return (
-              <li key={id} className={styles.card} onClick={(() => { console.log(id) })}>
-                {/* <img className={styles.cardImg} onClick={((e) => { e.target.src = image })} src={'/backRick.jpg'} alt={`${name}'s Thumb`}> */}
-                <img className={styles.cardImg} src={image} alt={`${name}'s Thumb`}>
-                </img>
-              </li>
-            )
-          })
+          update && (
+            randomChars.map((character) => {
+              const { id, name, image } = character;
+              return (
+                <li key={id} className={styles.card} onClick={(() => { console.log(id) })}>
+                  {/* <img className={styles.cardImg} onClick={((e) => { e.target.src = image })} src={'/backRick.jpg'} alt={`${name}'s Thumb`}> */}
+                  <img className={styles.cardImg} src={image} alt={`${name}'s Thumb`}>
+                  </img>
+                </li>
+              )
+            })
+          )
         }
+        {!update && <p>loading..</p>}
+
       </ul>
     </div>
   )
