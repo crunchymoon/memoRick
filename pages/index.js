@@ -9,6 +9,17 @@ export async function getServerSideProps() {
   const data = await res.json();
   return { props: { data } }
 }
+let asdfra = [];
+
+// let checkIfMatched = (e) => {
+//   if (asdfra[0] == asdfra[1]) {
+//     asdfra = []
+//     console.log(e.target)
+//   } else if (asdfra.length == 2) {
+//     asdfra = [];
+//   }
+// }
+
 
 export default function Home({ data }) {
 
@@ -58,6 +69,7 @@ export default function Home({ data }) {
     setCopyChars(randomChars)
   }, [randomChars])
 
+
   return (
     <div className={styles.mainContainer}>
       <ul className={styles.cardContainer}>
@@ -66,9 +78,37 @@ export default function Home({ data }) {
             randomChars.map((character) => {
               const { id, name, image } = character;
               return (
-                <li style={{ order: getRandomIntInclusive(0,100) }} key={id} className={`${styles.card} `} onClick={(() => { console.log(id) })}>
-                  {/* <img className={styles.cardImg} onClick={((e) => { e.target.src = image })} src={'/backRick.jpg'} alt={`${name}'s Thumb`}> */}
-                  <img className={styles.cardImg} src={image} alt={`${name}'s Thumb`}>
+                <li asd={id} style={{ order: getRandomIntInclusive(0, 100) }} key={id} className={styles.card}
+                  onClick={
+                    function (e) {
+                      setTimeout(()=>{
+                        e.target.src='/backRick.jpg'
+                      },3000)
+                      if (e.target == e.target || e.target == e.target.querySelector('img')) {
+                        let listi = document.querySelectorAll('li');
+
+                        //if asd == asd (ugyanannyi mind a 2 nel, hiddenre a visibilityt)
+
+                        asdfra.push(id)
+                        if (asdfra[0] == asdfra[1]) {
+                          asdfra = []
+                          console.log('match')
+                          listi.forEach((lis) => {
+                            if (lis.getAttribute('asd') == e.target.getAttribute('asd')) {
+                              lis.style.visibility = 'hidden';
+                            }
+                          })
+                        } else if (asdfra.length == 2) {
+                          asdfra = [];
+                          e.target.src='/backRick.jpg'
+                        }
+                      }
+
+
+                    }
+                  }>
+                  <img asd={id} className={styles.cardImg} onClick={((e) => { e.target.src = image })} src={'/backRick.jpg'} alt={`${name}'s Thumb`}>
+                  {/* <img asd={id} className={styles.cardImg} src={image} alt={`${name}'s Thumb`}> */}
                   </img>
                 </li>
               )
@@ -80,9 +120,38 @@ export default function Home({ data }) {
             copyChars.map((character) => {
               const { id, name, image } = character;
               return (
-                <li style={{ order: getRandomIntInclusive(0,100) }} key={id} className={styles.card} onClick={(() => { console.log(id) })}>
-                  {/* <img className={styles.cardImg} onClick={((e) => { e.target.src = image })} src={'/backRick.jpg'} alt={`${name}'s Thumb`}> */}
-                  <img className={styles.cardImg} src={image} alt={`${name}'s Thumb`}>
+                
+                <li asd={id} style={{ order: getRandomIntInclusive(0, 100) }} key={id} className={styles.card}
+                  onClick={
+                    function (e) {
+                      setTimeout(()=>{
+                        e.target.src='/backRick.jpg'
+                      },3000)
+                      if (e.target == e.target || e.target == e.target.querySelector('img')) {
+                        let listi = document.querySelectorAll('li');
+
+
+                        asdfra.push(id)
+                        if (asdfra[0] == asdfra[1]) {
+                          asdfra = []
+                          console.log('match')
+                          listi.forEach((lis) => {
+                            if (lis.getAttribute('asd') == e.target.getAttribute('asd')) {
+                              lis.style.visibility = 'hidden';
+                            }
+                          })
+                        } else if (asdfra.length == 2) {
+                          asdfra = [];
+          
+                        }
+                      }
+
+
+                    }
+                  }
+                >
+                  <img asd={id} className={styles.cardImg} onClick={((e) => { e.target.src = image })} src={'/backRick.jpg'} alt={`${name}'s Thumb`}>
+                  {/* <img asd={id} className={styles.cardImg} src={image} alt={`${name}'s Thumb`}> */}
                   </img>
                 </li>
               )
