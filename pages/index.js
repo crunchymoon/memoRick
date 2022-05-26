@@ -11,16 +11,6 @@ export async function getServerSideProps() {
 }
 let asdfra = [];
 
-// let checkIfMatched = (e) => {
-//   if (asdfra[0] == asdfra[1]) {
-//     asdfra = []
-//     console.log(e.target)
-//   } else if (asdfra.length == 2) {
-//     asdfra = [];
-//   }
-// }
-
-
 export default function Home({ data }) {
 
   const [currentData, setCurrentData] = useState(data);
@@ -71,6 +61,7 @@ export default function Home({ data }) {
   return (
     <div className={styles.mainContainer}>
       <ul className={styles.cardContainer}>
+
         {
           update && (
             randomChars.map((character) => {
@@ -79,6 +70,8 @@ export default function Home({ data }) {
                 <li asd={id} style={{ order: getRandomIntInclusive(0, 100) }} key={id} className={styles.card}
                   onClick={
                     function (e) {
+                      let divs = document.querySelectorAll('div')
+                      let allImages = document.querySelectorAll('img')
                       let thisImage = e.target.querySelector('img')
                       if (e.target == e.target || e.target == thisImage) {
                         let listi = document.querySelectorAll('li');
@@ -98,6 +91,19 @@ export default function Home({ data }) {
                           })
                         } else if (asdfra.length == 2) {
                           asdfra = [];
+                          divs.forEach((div) => {
+                            div.style.pointerEvents = 'none';
+
+                          })
+                          setTimeout(() => {
+                            allImages.forEach((oneImg) => {
+                              oneImg.src = '/backRick.jpg';
+                            })
+                            divs.forEach((div) => {
+                              div.style.pointerEvents = 'auto';
+
+                            })
+                          }, 1500)
                         }
                       }
 
@@ -121,6 +127,8 @@ export default function Home({ data }) {
                 <li asd={id} style={{ order: getRandomIntInclusive(0, 100) }} key={id} className={styles.card}
                   onClick={
                     function (e) {
+                      let divs = document.querySelectorAll('div')
+                      let allImages = document.querySelectorAll('img')
                       let thisImage = e.target.querySelector('img')
                       if (e.target == e.target || e.target == thisImage) {
                         let listi = document.querySelectorAll('li');
@@ -140,7 +148,19 @@ export default function Home({ data }) {
                           })
                         } else if (asdfra.length == 2) {
                           asdfra = [];
+                          divs.forEach((div) => {
+                            div.style.pointerEvents = 'none';
 
+                          })
+                          setTimeout(() => {
+                            allImages.forEach((oneImg) => {
+                              oneImg.src = '/backRick.jpg';
+                            })
+                            divs.forEach((div) => {
+                              div.style.pointerEvents = 'auto';
+
+                            })
+                          }, 1500)
                         }
                       }
                     }
